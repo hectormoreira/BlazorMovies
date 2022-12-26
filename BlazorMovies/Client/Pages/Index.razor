@@ -1,0 +1,71 @@
+﻿@page "/"
+
+<div>
+    <h3>Movies</h3>
+
+    @if (Movies == null)
+    {
+        <p>Loading...</p>
+    }
+    else
+    {
+        @foreach (var movie in GetMovies())
+        {
+            <div style="border-bottom:1px solid #333">
+                <p>
+                    Title: <b>@movie.Title</b>
+                    @if (DateTime.Today.Subtract(movie.ReleaseDate).Days <= 14)
+                    {
+                        <span style="color:red"> (Nuevo)</span>
+                    }
+                </p>
+                <p>Release date: <b>@movie.ReleaseDate.ToString("dd MMM yyyy")</b></p>
+            </div>
+        }
+    }
+
+</div>
+----------------------------------------------------
+<p>Hello from hot reload</p>
+<p>Hola, @Utils.UtilString.Transformar(name) </p>
+<p>Vamos a sumar 2+2=@(2 + 2)</p>
+
+<button @onclick=@(HandleClickButton)>Click me</button>
+
+@code {
+    string name = "Hector";
+
+    Movie OnePiece { get { return GetMovie(); } }
+    List<Movie>? Movies { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await Task.Delay(2000);
+        Movies = GetMovies();
+    }
+
+    Movie GetMovie()
+    {
+        return new Movie
+            {
+                Title = "One Piece Red Film",
+                ReleaseDate = new DateTime(2022, 12, 31)
+
+            };
+    }
+
+    List<Movie> GetMovies()
+    {
+        return new List<Movie>()
+        {
+            new Movie {Title = "One Piece Red Film",ReleaseDate = new DateTime(2022, 12, 31)},
+            new Movie { Title = "Batman Gothan Night", ReleaseDate = new DateTime(2019, 01, 12) },
+            new Movie { Title = "Batman Arkham Asylum", ReleaseDate = new DateTime(2020, 12, 04) },
+        };
+    }
+
+    void HandleClickButton()
+    {
+        Console.WriteLine("Me han clickeado desde una función!");
+    }
+}
