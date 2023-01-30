@@ -13,7 +13,7 @@
         {
             <div style="border-bottom:1px solid #333">
                 <p>
-                    Title: <b>@movie.Title</b>
+                    Title: @((MarkupString)movie.Title)
                     @if (DateTime.Today.Subtract(movie.ReleaseDate).Days <= 14)
                     {
                         <span style="color:red"> (Nuevo)</span>
@@ -58,8 +58,8 @@
     {
         return new List<Movie>()
         {
-            new Movie {Title = "One Piece Red Film",ReleaseDate = new DateTime(2022, 12, 31)},
-            new Movie { Title = "Batman Gothan Night", ReleaseDate = new DateTime(2019, 01, 12) },
+            new Movie {Title = "<b>One Piece Red Film</b>",ReleaseDate = new DateTime(2023, 01, 28)},
+            new Movie { Title = "<i>Batman Gothan Night</i>", ReleaseDate = new DateTime(2019, 01, 12) },
             new Movie { Title = "Batman Arkham Asylum", ReleaseDate = new DateTime(2020, 12, 04) },
         };
     }
