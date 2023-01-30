@@ -6,7 +6,7 @@ else
 {
     @foreach (var movie in Movies)
     {
-        <MovieItem Movie="movie" />
+        <MovieItem Movie="movie" ShowRemove="ShowBtns" />
     }
 }
 
@@ -14,4 +14,6 @@ else
     [Parameter]
     [EditorRequired]
     public List<Movie>? Movies { get; set; }
+
+    bool ShowBtns = false;
 }
