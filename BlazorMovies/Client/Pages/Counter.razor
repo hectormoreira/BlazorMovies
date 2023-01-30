@@ -8,11 +8,23 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
+<MovieList Movies="GetMovies()"/>
+
 @code {
     private int currentCount = 0;
 
     private void IncrementCount()
     {
         currentCount++;
+    }
+
+    List<Movie> GetMovies()
+    {
+        return new List<Movie>()
+        {
+            new Movie {Title = "One Piece Film Z",ReleaseDate = new DateTime(2023, 01, 28)},
+            new Movie { Title = "Batman Gothan", ReleaseDate = new DateTime(2019, 01, 12) },
+            new Movie { Title = "Batman The Killing Joke", ReleaseDate = new DateTime(2020, 12, 04) },
+        };
     }
 }
