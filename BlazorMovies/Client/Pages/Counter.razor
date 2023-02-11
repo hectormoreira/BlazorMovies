@@ -8,7 +8,9 @@
 
 <button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
 
-<MovieList Movies="GetMovies()"/>
+<div>
+    <MovieList Movies="GetMovies()" />
+</div>
 
 @code {
     private int currentCount = 0;

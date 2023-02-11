@@ -4,6 +4,10 @@
 }
 else
 {
+    @*<input type="checkbox" @onchange="@(() => ShowBtns = !ShowBtns)" />*@
+    <input type="checkbox" @bind="ShowBtns" />
+    <span>Mostrar botones</span>
+
     @foreach (var movie in Movies)
     {
         <MovieItem Movie="movie" ShowRemove="ShowBtns" />
@@ -15,5 +19,6 @@ else
     [EditorRequired]
     public List<Movie>? Movies { get; set; }
 
-    bool ShowBtns = false;
+    bool ShowBtns = true;
+
 }
