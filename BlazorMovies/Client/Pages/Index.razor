@@ -1,12 +1,16 @@
 ﻿@page "/"
 
-@*<div>
+<div>
     <h3>Movies</h3>
-    <MovieList Movies="GetMovies()" />
-</div>*@
-
-
-<BindEvent/>
+    <MovieList Movies="GetMovies()">
+        <Loading>
+            <p>Estamos cargando</p>
+        </Loading>
+        <Empty>
+            <p>No hay peliculas</p>
+        </Empty>
+    </MovieList>
+</div>
 
 
 

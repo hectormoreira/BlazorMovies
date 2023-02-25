@@ -1,0 +1,34 @@
+﻿<h3>BindAfterDemo</h3>
+
+<input type="text" @bind="search" @bind:after="Search" @bind:event="oninput" />
+
+<p>
+    Personas encontradas:
+</p>
+
+<ul>
+    @foreach (var person in result)
+    {
+        <li>@person</li>
+    }
+</ul>
+
+@code {
+    private string search = string.Empty;
+    private List<string> result = new List<string>();
+
+    private async Task Search()
+    {
+        var persons = new List<string>
+        {
+            "Gold D Roger",
+            "Monkey D Dragon",
+            "Monkey D Garp",
+            "Trafalgar D Law"
+        };
+        await Task.Delay(1000);
+        result = persons.Where(p => p.Contains(search)).ToList();
+    }
+
+
+}
