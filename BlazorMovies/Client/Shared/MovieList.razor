@@ -1,41 +1,44 @@
-﻿@if (Movies == null)
-{
-    @if (Loading is null)
-    {
-        <p>Loading null...</p>
-    }
-    else
-    {
-        @Loading
-    }
-}
-else if (Movies.Count == 0)
-{
-    @if (Empty is null)
-    {
-        <p>No hay peliculas para mostrar. Null</p>
-    }
-    else
-    {
-        @Empty
-    }
-}
-else
-{
-    @*<input type="checkbox" @onchange="@(() => ShowBtns = !ShowBtns)" />*@
-    <input type="checkbox" @bind="ShowBtns" />
-    <span>Mostrar botones</span>
+﻿@*<input type="checkbox" @onchange="@(() => ShowBtns = !ShowBtns)" />*@
+<input type="checkbox" @bind="ShowBtns" />
+<span>Mostrar botones</span>
 
-    @foreach (var movie in Movies)
-    {
+<GenericList List="Movies">
+    <HasItems Context="movie">
         <MovieItem Movie="movie" DeleteMovie="DeleteMovie" ShowRemove="ShowBtns" />
-    }
-}
+    </HasItems>
+</GenericList>
+
 
 @code {
     [Parameter]
     [EditorRequired]
     public List<Movie>? Movies { get; set; }
+
+    protected override void OnInitialized()
+    {
+        Console.WriteLine("OnInitialized");
+    }
+
+    protected override void OnParametersSet()
+    {     
+        Console.WriteLine("OnParametersSet");
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        Console.WriteLine("OnAfterRender, primer render: " + firstRender);
+    }
+
+    protected override bool ShouldRender()
+    {
+        Console.WriteLine("ShouldRender");
+        return true;
+    }
+
+
+
+
+
 
     [Parameter]
     public RenderFragment Loading { get; set; } = null!;

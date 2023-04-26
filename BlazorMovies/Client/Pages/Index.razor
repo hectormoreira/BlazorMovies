@@ -2,24 +2,9 @@
 
 <div>
     <h3>Movies</h3>
-    <MovieList Movies="GetMovies()">
-        <Loading>
-            <p>Estamos cargando</p>
-        </Loading>
-        <Empty>
-            <p>No hay peliculas</p>
-        </Empty>
-    </MovieList>
+    <MovieList Movies="GetMovies()" />
+
 </div>
-
-
-
-@*<div>
-    <h2>Crear nuevas peliculas</h2>
-    <TextBoxExample placeholder="Movie name"/>
-</div>*@
-
-
 
 @code {
     List<Movie> GetMovies()
